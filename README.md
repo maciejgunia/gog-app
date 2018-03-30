@@ -1,29 +1,7 @@
-# React Webpack Starter
-> This is a boilerplate for React 16 & Webpack 4. It includes webpack-dev-server and a build script
+# React Sass Webpack Starter
+template for react application with sass included
 
-## Quick Start
-
-``` bash
-# Install dependencies
-npm install
-
-# Serve on localhost:3000
-npm start
-
-# Build for production
-npm run build
-```
-
-## App Info
-
-### Author
-
-Brad Traversy
-[Traversy Media](http://www.traversymedia.com)
-
-### Version
-
-1.0.0
+based on https://github.com/bradtraversy/react_webpack_starter
 
 ### License
 
