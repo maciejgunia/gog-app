@@ -1,8 +1,10 @@
-# React Sass Webpack Starter
-template for react application with sass included
+# sample cart app
+preview link - https://gog-app-17728.firebaseapp.com/
 
-based on https://github.com/bradtraversy/react_webpack_starter
-
-### License
-
-This project is licensed under the MIT License
+## used in app
+* react
+* sass
+* webpack
+* css grid (a little bit)
+* flexbox
+* firebase database, storage and hosting
