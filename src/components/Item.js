@@ -9,8 +9,8 @@ class Item extends Component {
         this.state = this.props.data
     }
 
-    cartHandler = () => {
-        this.props.cartHandler(this.state.id);
+    addItemHandler = () => {
+        this.props.addItemHandler(this.state.id);
     }
     
     render() {
@@ -22,7 +22,7 @@ class Item extends Component {
         } else if(this.state.inCart){
             button = <button className="btn">in cart</button>;
         } else {
-            button = <button className="btn btn-active" onClick={this.cartHandler}>$ {this.state.price}</button>
+            button = <button className="btn btn-active" onClick={this.addItemHandler}>$ {this.state.price}</button>
         }
 
         if(this.state.discount) discount = <span className="discount">- {this.state.discount}%</span>

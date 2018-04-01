@@ -35,14 +35,22 @@ class App extends Component {
 		xhr.send();
 	}
 
-	cartHandler = itemId => {
+	componentDidUpdate (prevProps, prevState) {
+		if(prevState.items.filter(item => item.inCart).length === 0 && prevState.cartVisible)
+			this.setState(prevState => {
+				prevState.cartVisible = false;
+				return prevState;
+			});
+	}
+
+	addItemHandler = itemId => {
 		let cartItems = this.state.items.filter(item => item.inCart),
 			maxOrder = 0;
 
 		if(cartItems.length > 0) maxOrder = Math.max(...cartItems.map(item => item.order));
 
 		this.setState(prevState => {
-			prevState.items.map(item => {
+			prevState.items.forEach(item => {
 				if(item.id === itemId && !item.inCart) {
 					item.inCart = true;
 					item.order = maxOrder + 1;
@@ -54,7 +62,21 @@ class App extends Component {
 	}
 
 	removeItemHandler = itemId => {
-		console.log(itemId);
+		const index = this.state.items.findIndex(item => item.id === itemId);
+
+		this.setState(prevState => {
+			prevState.items[index].inCart = false;
+			return prevState;
+		});
+	}
+
+	removeAllHandler = () => {
+		this.setState(prevState => {
+			prevState.items.forEach(item => {
+				item.inCart = false;
+			})
+			return prevState;
+		});
 	}
 
 	toggleCart = () => {
@@ -75,7 +97,7 @@ class App extends Component {
 		if (cartItems.length) {
 			total = cartPrices.reduce((a, b) => {
 				return a + b;
-			});
+			}).toFixed(2);
 		} else {
 			cartClass += ' empty';
 		}
@@ -95,7 +117,7 @@ class App extends Component {
 							<div className="cart-summary">
 								<span className="cart-summary-items">{cartItems.length} items in cart</span>
 								<span className="cart-summary-total">$ {total}</span>
-								<button className="cart-clear"><span>clear cart</span></button>
+								<button className="cart-clear" onClick={this.removeAllHandler}><span>clear cart</span></button>
 							</div>
 							<div className="cart-items">
 								{cartItems.map(item => (
@@ -111,7 +133,7 @@ class App extends Component {
 						<img className="banner" src={this.state.assets.banner} alt=""/>
 						<div className="items">
 							{this.state.items.map(item => (
-								<Item key={item.id} data={item} cartHandler={this.cartHandler}/>
+								<Item key={item.id} data={item} addItemHandler={this.addItemHandler}/>
 							))}
 						</div>
 					</div>

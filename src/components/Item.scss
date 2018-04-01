@@ -1,6 +1,9 @@
 .item {
     background: #dedede;
     box-shadow: 0 1px 5px rgba(0,0,0,0.15);
+    img {
+        width: 100%;
+    }
     .info {
         padding: 10px;
     }
